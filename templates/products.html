@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+    <!-- style -->
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        header{
+            width:100vw;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .Search-form{
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-input{
+            padding: 13px;
+            width: 60%;
+            font-size: 1.2em;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 0.1px solid rgba(128, 128, 128, 0.39);
+        }
+
+
+        .search-button{
+            padding: 12px;
+            border: 0;
+            background-color: rgb(24, 224, 24);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.5em;
+            border-radius: 5px;
+            transition: 0.7s;
+        }
+        .search-button:hover{
+            transform: scale(1.05);
+            background-color: green;
+        }
+
+        .section-products{
+            width: 100%;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-products .products-card{
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product-card{
+            padding: 15px;
+            border: 0.5px solid rgba(128, 128, 128, 0.363);
+            box-shadow: 1px 1px 5px 5px rgba(128, 128, 128, 0.363);
+            margin-right: 30px;
+            transition: 0.7s;
+            margin-bottom: 30px;
+
+        }
+
+        .product-card:hover{
+            transform: scale(1.1);
+            box-shadow: 2px 2px 7px 7px rgba(128, 128, 128, 0.363);
+
+        }
+
+        .product-photo{
+            margin-bottom: 20px;
+        }
+
+        .product-date{
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .time-publish{
+            margin-top: 40px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .buy-product{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .buy-product button{
+            padding: 10px 30px;
+            border: 0;
+            background-color: rgb(24, 224, 24);
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product-card h3{
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .product-card h4{
+            font-weight: bold;
+            color: rgb(75, 74, 74);
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <form class="Search-form" method="GET">
+            <input class="search-input" type="search" placeholder="Serach" name="search">
+            <input class="search-button" type="submit" value="Serach">
+        </form>
+    </header>
+
+    <hr style="width:40% ; margin:auto; margin-bottom:50px">
+
+    <!-- products -->
+
+    {% load static %}
+    <section class="section-products">
+        <div class="products-card">
+        {% for i in products %}
+        {% if search == i.name %}
+            <div class="product-card">
+                <img src="{{i.image.url}}" alt="product-photo" width="250px" height="200px" class="product-photo">
+                <h3 style="text-align: center;">{{i.name}}</h3>
+                <br>
+                <hr style="width: 50%;margin:auto">
+
+                <div class="product-date">
+                    <div class="date-header">
+                        
+                        <br>
+                        <h4>Price:</h4>
+                        <br>
+                        <h4>Available quantities: </h4>
+                        <br>
+                        <h4>Category: </h4>
+                    </div>
+                    <div class="date">
+                        <br>
+                        <h4>{{i.price}}$</h4>
+                        <br>
+                        <h4>{{i.amounts}}</h4>
+                        <br>
+                        <h4>{{i.category}}</h4>
+                        
+                    </div>
+                    <!-- <p>{{i.time}}</p> -->
+                </div>
+                <div class="time-publish">
+                    <p>Time: {{i.time}}</p>
+                </div>
+                <div class="buy-product">
+                    <button>Buy</button>
+                </div>
+            </div>
+        {% elif search != i.name %}
+            <div class="product-card">
+                <img src="{{i.image.url}}" alt="product-photo" width="250px" height="200px" class="product-photo">
+                <h3 style="text-align: center;">{{i.name}}</h3>
+                <br>
+                <hr style="width: 50%;margin:auto">
+
+                <div class="product-date">
+                    <div class="date-header">
+
+                        <br>
+                        <h4>Price:</h4>
+                        <br>
+                        <h4>Available quantities: </h4>
+                        <br>
+                        <h4>Category: </h4>
+                    </div>
+                    <div class="date">
+                        <br>
+                        <h4>{{i.price}}$</h4>
+                        <br>
+                        <h4>{{i.amounts}}</h4>
+                        <br>
+                        <h4>{{i.category}}</h4>
+
+                    </div>
+                    <!-- <p>{{i.time}}</p> -->
+                </div>
+                <div class="time-publish">
+                    <p>Time: {{i.time}}</p>
+                </div>
+                <div class="buy-product">
+                    <button>Buy</button>
+                </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </section>
+</body>
+</html>

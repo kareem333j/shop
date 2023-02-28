@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add-product</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .header-title{
+            width:100%;
+            padding:20px;
+            background-color:black;
+            display:flex;
+        }
+        .title{
+            width:70%;
+            margin:auto;
+            text-align:center;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .header-title .title h1{
+            color : #fff;
+            font-weight: bold;
+            text-align:center;
+        }
+        .section1{
+            width:100%;
+            min-height:80vh;
+            display:flex;
+            padding:10px;
+            align-items:center;
+            justify-content:center;
+        }
+        .product-form{
+            display:flex;
+            margin:auto;
+            width:60%;
+            padding:15px;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            <!-- border: 1px solid red; -->
+        }
+        .product-form div{
+            width: 100%;
+            overflow: hidden;
+        }
+        .product-form input{
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            border: 0.5px solid gray;
+            margin-top: 10px;
+        }
+        .product-form label{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .product-form select{
+            width: 97%;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header class="header-title">
+        <div class="title">
+            <h1>Add Product</h1>
+        </div>
+    </header>
+    <section class="section1">
+            <form class="product-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <label>Name: </label>
+                    {{prduct.name}}
+                </div>
+                <hr>
+                <br>
+                <div>
+                    <label>Price: </label>
+                    {{prduct.price}}
+                </div>
+                <hr>
+                <br>
+                <div>
+                    <label>Chose-Category: </label>
+                    {{prduct.category}}
+                </div>
+                <hr>
+                <br>
+                <div>
+                    <label>Available-Quantity: </label>
+                    {{prduct.amounts}}
+                </div>
+                <hr>
+                <br>
+                <div class="div-image">
+                    <label>Product-Image: </label>
+                    {{prduct.image}}
+                </div>
+                <input type="submit" value="Save" style="width: 98%; margin-right:20px">
+            </form>
+    </section>
+</body>
+</html>
